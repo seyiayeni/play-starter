@@ -13,6 +13,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Created by seyi on 2/12/15.
+ */
 @Singleton
 public class DBService {
 	private JPAApi jpa;

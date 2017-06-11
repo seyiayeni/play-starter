@@ -1,5 +1,6 @@
 package controllers;
 
+import authority.Secured;
 import models.Account;
 import play.data.Form;
 import play.data.FormFactory;
@@ -61,7 +62,7 @@ public class AuthController extends Controller {
 				return badRequest(login.render(filledForm));
 			}
 
-			String lastUrl = session().get("lastUrl");
+			String lastUrl = session().get(Secured.LAST_URL);
 			if(Utility.isNotEmpty(lastUrl)) {
 				return redirect(lastUrl);
 			}
