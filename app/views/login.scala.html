@@ -1,0 +1,31 @@
+@(form: Form[pojos.Credentials])
+
+@layout("login") {
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h3>Welcome</h3>
+            <p>Login in.</p>
+
+            @if(flash.containsKey("message")) {
+                <div class="alert alert-danger">
+                    @flash.get("message");
+                </div>
+            }
+            @if(form.hasGlobalErrors) {
+                <div class="alert alert-danger">
+                @form.globalError().message()
+                </div>
+            }
+            <form role="form" action="@routes.AuthController.login()" method="post">
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control" value="@form("email").value" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+            </form>
+        </div>
+    </div>
+}
+

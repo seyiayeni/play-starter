@@ -1,0 +1,85 @@
+@(aForm: Form[Account], account: Account)
+
+@import fields._
+@import scala.collection.immutable.Map
+
+@url = @{
+    if(account.getId != null) routes.AccountController.update(account.getId)
+    else routes.AccountController.create()
+}
+
+@layout("Account Form", styles=styles, scripts=scripts) {
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Account Form
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <form method="post" action="@url">
+                                <div class="col-md-6">
+                                @f_text(
+                                    aForm("name"),
+                                    "Name",
+                                    "text",
+                                    Map("placeholder"->"Name","required" -> "required"),
+                                    ""
+                                )
+                                </div>
+                                <div class="col-md-6">
+                                @f_text(
+                                    aForm("email"),
+                                    "Email",
+                                    "email",
+                                    Map("placeholder"->"Email", "required" -> "required"),
+                                    ""
+                                )
+                                </div>
+                                <hr class="clear"/>
+                                @if(account.getId != null) {
+                                    <div class="text-info">Leave password fields empty if you are not changing it</div>
+                                }
+                                <div class="col-md-6">
+                                @f_text(
+                                    aForm("password"),
+                                    "Password",
+                                    "password",
+                                    Map("placeholder"->"Password"),
+                                    ""
+                                )
+                                </div>
+                                <div class="col-md-6">
+                                @f_text(
+                                    aForm("confirmPass"),
+                                    "Confirm Password",
+                                    "password",
+                                    Map("placeholder"->"Confirm Password"),
+                                    ""
+                                )
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@styles = {
+    <style type="text/css">
+    </style>
+}
+
+@scripts = {
+    <script type="text/javascript">
+    </script>
+}

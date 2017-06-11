@@ -1,0 +1,57 @@
+@(title: String, styles: Html = Html(""), scripts: Html = Html(""))(content: Html)
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>@title</title>
+
+        <link href="@StaticAssets.getUrl("bootstrap/css/bootstrap.min.css")" rel="stylesheet">
+        <link href="@StaticAssets.getUrl("font-awesome/css/font-awesome.min.css")" rel="stylesheet">
+        <link href="@StaticAssets.getUrl("css/style.css")" rel="stylesheet">
+
+        @styles
+
+    </head>
+
+    <body>
+        <div id="wrapper">
+            @if(Auth.isLogin) {
+                <nav class="navbar navbar-default">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="@routes.IndexController.index()">Play Starter</a>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                                <li><a href="@routes.AccountController.index()">Accounts</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="@routes.AuthController.logout()">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            }
+
+            <div id="page-wrapper" class="container">
+                @content
+            </div>
+        </div>
+
+        <script src="@StaticAssets.getUrl("js/jquery.min.js")"></script>
+        <script src="@StaticAssets.getUrl("bootstrap/js/bootstrap.min.js")"></script>
+        <script src="@StaticAssets.getUrl("js/app.js")"></script>
+        @scripts
+    </body>
+</html>
