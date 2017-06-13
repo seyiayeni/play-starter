@@ -66,16 +66,19 @@ public class AccountController extends Controller {
 
     public Result create() {
         Form<Account> filledForm = this.formFactory.form(Account.class).bindFromRequest();
-        validate(filledForm, new Account());
+
+        Account account = new Account();
+
+
+        validate(filledForm, account);
 
         if (filledForm.hasErrors()) {
-            return badRequest(accountForm.render(filledForm, new Account()));
+            return badRequest(accountForm.render(filledForm, account));
         } else {
-            Account created = new Account();
-            fill(filledForm, created);
-            created.setActive(true);
-            db.save(created);
-            return redirect(routes.AccountController.single(created.getId()));
+            fill(filledForm, account);
+            account.setActive(true);
+            db.save(account);
+            return redirect(routes.AccountController.single(account.getId()));
         }
     }
 
