@@ -66,10 +66,7 @@ public class AccountController extends Controller {
 
     public Result create() {
         Form<Account> filledForm = this.formFactory.form(Account.class).bindFromRequest();
-
         Account account = new Account();
-
-
         validate(filledForm, account);
 
         if (filledForm.hasErrors()) {
@@ -92,6 +89,7 @@ public class AccountController extends Controller {
         Account account = db.findOne(Account.class, id);
         Form<Account> filledForm = this.formFactory.form(Account.class).bindFromRequest();
         validate(filledForm, account);
+
         if (filledForm.hasErrors()) {
             return badRequest(accountForm.render(filledForm, account));
         } else {

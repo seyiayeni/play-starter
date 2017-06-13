@@ -163,7 +163,7 @@ public class DBService {
 			String key = entry.getKey();
 			Object value = entry.getValue();
 			if(value instanceof Date) {
-				q.setParameter(key, (Date)value, TemporalType.DATE);
+				q.setParameter(key, (Date)value, TemporalType.TIMESTAMP);
 			} else {
 				q.setParameter(key, value);
 			}

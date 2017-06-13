@@ -1,9 +1,6 @@
 package models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -17,6 +14,7 @@ public class Model {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date created = new Date();
 
 	public Long getId() {
